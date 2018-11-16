@@ -365,7 +365,7 @@ In order for this to work, necessary changes to the target Xcode Swift project a
         foreach (var projPath in
             from f in newFiles
             where !f.EndsWith(".bak", StringComparison.OrdinalIgnoreCase)
-            let projPath = Path.Combine(projectPathPrefix, f)
+            let projPath = PathExt.Rel2Abs(f, projectPathPrefix)
             where !pbx.ContainsFileByProjectPath(projPath)
             select projPath)
         {
@@ -377,7 +377,7 @@ In order for this to work, necessary changes to the target Xcode Swift project a
 
         foreach (var projPath in
             from f in extraFiles
-            let projPath = PathExt.Combine(projectPathPrefix, f)
+            let projPath = PathExt.Rel2Abs(f, projectPathPrefix)
             where pbx.ContainsFileByProjectPath(projPath)
             select projPath)
         {
